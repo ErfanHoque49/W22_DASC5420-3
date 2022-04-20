@@ -6,14 +6,9 @@
 
 # Here, we will develop, evaluate and compare the performance and predictive power of a simple linear regression model and neural network on boston housing price data
 # 
-# Here the target is to determine the price of the property based on the features
+# Here the target is to determine the price of the property based on the features.
 
-# In[ ]:
-
-
-
-
-
+# <a id = 'data'></a>
 # # Dataset
 
 # The dataset used in the anlysis comes from the UCI Machine Learning Repository. This data was collected in 1978 and each of the 506 entries represents aggregate information about 14 features of homes from various suburbs located in Boston.
@@ -36,8 +31,9 @@
 
 # <a id = 'library'></a>
 # # Importing libraries and the dataset
+# Unlike the conventional way, I import the library when it is needed. It will actually help you to understand where the application of the class and it's function is used
 
-# In[1]:
+# In[6]:
 
 
 #Importing the pandas for data processing and numpy for numerical computing
@@ -51,7 +47,7 @@ import pandas as pd
 
 
 
-# In[2]:
+# In[7]:
 
 
 # Importing the Boston Housing dataset from the sklearn
@@ -59,7 +55,7 @@ from sklearn.datasets import load_boston
 boston = load_boston()
 
 
-# In[3]:
+# In[8]:
 
 
 #Converting the data into pandas dataframe
@@ -68,63 +64,45 @@ data = pd.DataFrame(boston.data)
 
 # ### Look at the dataset
 
-# In[4]:
-
-
-#First look at the data
-data.head()
-
-
-# In[5]:
+# In[10]:
 
 
 #Adding the feature names to the dataframe
 data.columns = boston.feature_names
 
 
-# In[6]:
+# In[11]:
 
 
 #Adding the target variable to the dataset
 data['PRICE'] = boston.target 
 
 
-# In[7]:
+# In[12]:
 
 
 #Looking at the data with names and target variable
 data.head()
 
 
-# In[8]:
+# In[13]:
 
 
-#Length of the data
+# Length of the data
 print(data.shape)
 
 
-# In[9]:
+# In[14]:
 
 
 #Checking the missing values in the dataset
 data.isnull().sum()
 
 
-# No null values in the dataset, no missing value treatement needed
-
-# In[10]:
-
-
-#Checking the statistics of the data
-data.describe()
-
-
-# This is sometimes very useful, for example if you look at the CRIM the max is 88.97 and 75% of the value is below 3.677083 and mean is 3.613524 so it means the max values is actually an outlier or there are outliers present in the column
-
 # <a id = 'visual'></a>
 # # Visualisation
 
-# In[11]:
+# In[17]:
 
 
 #checking the distribution of the target variable
@@ -137,7 +115,7 @@ sns.distplot(data.PRICE)
 # <a id = 'split'></a>
 # ### Splitting the dependent feature and independent feature 
 
-# In[13]:
+# In[22]:
 
 
 #X = data[['LSTAT','RM','PTRATIO']]
@@ -148,7 +126,7 @@ y= data.PRICE
 # <a id = 'valid'></a>
 # ### Splitting the data for Model Validation 
 
-# In[14]:
+# In[23]:
 
 
 # Splitting the data into train and test for building the model
@@ -159,7 +137,7 @@ X_train, X_test, y_train, y_test = train_test_split(X,y, test_size = 0.2, random
 # <a id = 'build'></a>
 # ### Building the Model 
 
-# In[15]:
+# In[24]:
 
 
 #Linear Regression 
@@ -167,7 +145,7 @@ from sklearn.linear_model import LinearRegression
 regressor = LinearRegression()
 
 
-# In[16]:
+# In[25]:
 
 
 #Fitting the model
@@ -177,14 +155,14 @@ regressor.fit(X_train,y_train)
 # <a id = 'evaluate'></a>
 # ### Model Evaluation
 
-# In[17]:
+# In[26]:
 
 
 #Prediction on the test dataset
 y_pred = regressor.predict(X_test)
 
 
-# In[18]:
+# In[27]:
 
 
 # Predicting RMSE the Test set results
@@ -193,7 +171,7 @@ rmse = (np.sqrt(mean_squared_error(y_test, y_pred)))
 print(rmse)
 
 
-# In[19]:
+# In[28]:
 
 
 from sklearn.metrics import r2_score
@@ -202,9 +180,9 @@ print(r2)
 
 
 # <a id  = 'NN'></a>
-# ## Feed Forward Neural Networks
+# ## Neural Networks
 
-# In[20]:
+# In[29]:
 
 
 #Scaling the dataset
@@ -214,7 +192,7 @@ X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
 
 
-# * We are using Keras for developing the neural network.
+#  We are using Keras for developing the neural network.
 # * Models in Keras are defined as a sequence of layers
 # * We create a Sequential model and add layers one at a time with activation function
 # * Activation function decides, whether a neuron should be activated or not by calculating weighted sum and further adding bias with it. The purpose of the activation function is to introduce non-linearity into the output of a neuron.The activation we are using is relu
@@ -224,7 +202,7 @@ X_test = sc.transform(X_test)
 # * Optimizer: - (Backpropagation) The optimizer we are using is adam. "Adam" is an optimization algorithm that can be used instead of the classical stochastic gradient descent (SGD) procedure to update network weights iterative based in training data.
 # * Loss - mean square error
 
-# In[21]:
+# In[30]:
 
 
 #Creating the neural network model
@@ -242,7 +220,7 @@ model.add(Dense(1))
 model.compile(optimizer = 'adam',loss = 'mean_squared_error')
 
 
-# In[22]:
+# In[31]:
 
 
 model.fit(X_train, y_train, epochs = 100)
