@@ -1,2 +1,2 @@
-# Teaching_W22
-This is a graduate level course (DASC 5420-3: Theoretical Machine Learning). This course covers the theory and application of many foundational machine learning methods. 
+# DASC 5420-3: Theoretical Machine Learning
+This is a graduate level course. This course covers the theory and application of many foundational machine learning methods. This repository contains the lecture notes and software codes (R and Python) used in this course. 
