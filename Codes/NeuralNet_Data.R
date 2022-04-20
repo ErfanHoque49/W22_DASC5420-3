@@ -1,11 +1,10 @@
-################################################################################
+#################################################################################################################################
 # We are going to use the Boston dataset in the MASS package.
-# The Boston dataset is a collection of data about housing values in the suburbs
-# of Boston. 
-# Our goal is to predict the median value of owner-occupied homes (medv)
-# using all the other continuous variables available.
-# The dataset for this project originates from the UCI Machine Learning Repository. 
-################################################################################
+# The Boston dataset is a collection of data about housing values in the suburbs of Boston. 
+# The dataset for this project originates from the UCI Machine Learning Repository.
+# Our goal is to predict the median value of owner-occupied homes (medv) using all the other continuous variables available. 
+# This code is strongly inspired by https://www.r-bloggers.com/
+#################################################################################################################################
 # Set a seed
 set.seed(500)
 
